@@ -5,7 +5,9 @@ console.log('Hola soy el script');
 
 function createPerson (e){
     e.preventDefault();
-    const nombre = document.getElementById ('nombre').ariaValueMax.trim
+    const nombre = document.getElementById ('nombre').ariaValueMax.trim()
+    const edad = document.getElementById ('edad').value.trim();
+    const form = document.getElementById('form');
 }
 
 //READ-RETRIEVE
