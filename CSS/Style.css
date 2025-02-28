@@ -1,0 +1,7 @@
+body {
+    background-color: rgb(131,58,180);
+    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(36,144,248,1) 0%, rgba(29,150,253,1) 5%, rgba(0,0,0,1) 100%);
+    font-family: Arial, sans-serif; /* Cambia la fuente de toda la página */
+    margin: 0; /* Elimina los márgenes predeterminados del body */
+    padding: 0; /* Elimina el relleno predeterminado del body */
+  }
