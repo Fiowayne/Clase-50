@@ -3,19 +3,13 @@ console.log('Hola soy el script');
 document.getElementById('form').addEventListener("submit", createPerson);
 
 // C-R-U-D
-// CREATE
 
-// JSON.stringify
-// JSON.PARSE
-function renderlist() {
+// READ-RETRIEVE
+function renderList() {
   const lista = document.getElementById('lista');
   lista.innerHTML = '';
 
   const persons = JSON.parse(localStorage.getItem('persons')) || [];
-
-  if (persons === null) {
-    return;
-  }
 
   persons.forEach((person, index) => {
     const row = document.createElement('tr');
@@ -23,10 +17,10 @@ function renderlist() {
             <td>${index + 1} </td>
             <td>${person.id}</td>
             <td>${person.name}</td>
-            <td>${person.edad}</td>
+            <td>${person.age}</td>
             <td>
                 <button>Modificar</button>
-                <button>Eliminar</button>
+                <button onclick="deletePerson('${person.id}')"> Eliminar </button>
             </td>
         `;
 
@@ -36,22 +30,39 @@ function renderlist() {
   console.log(persons);
 }
 
-renderlist();
+renderList();
 
-function createPerson(e) { // Paréntesis agregado aquí
+// CREATE
+function createPerson(e) {
   e.preventDefault();
   console.log('VAMOS A CREAR UNA PERSONA...');
   const name = document.getElementById('nombre').value.trim();
   const age = document.getElementById('edad').value.trim();
-  const id = "2"
+  console.log(age)
+  const id = `${Math.floor(Math.random() * 100000).toString()}`;
   const form = document.getElementById('form');
 
+  const persons = JSON.parse(localStorage.getItem('persons')) || [];
 
-const persons = JSON.parse(localStorage.getItem('persons')) || [];
+  persons.push({ id, name, age });
 
+  console.log(persons);
+  localStorage.setItem("persons", JSON.stringify(persons));
 
-persons.push({id, name, age})
+  renderList();
 
-localStorage.setItem
-
+  form.reset();
 }
+
+function deletePerson(personid) {
+  const arrayPersons = JSON.parse(localStorage.getItem('persons')) || [];
+  console.log(personid);
+
+  const nuevoArray = arrayPersons.filter((person) => person.id !== personid); // Corregido: Filtrar por IDs diferentes
+  console.log(nuevoArray);
+  localStorage.setItem("persons", JSON.stringify(nuevoArray)); // Corregido: Usar nuevoArray
+  renderList();
+}
+
+// UPDATE
+// DELETE
