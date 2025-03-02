@@ -1,15 +1,57 @@
 console.log('Hola soy el script');
 
-//C-R-U-D 
-//CREATE
+document.getElementById('form').addEventListener("submit", createPerson);
 
-function createPerson (e){
-    e.preventDefault();
-    const nombre = document.getElementById ('nombre').ariaValueMax.trim()
-    const edad = document.getElementById ('edad').value.trim();
-    const form = document.getElementById('form');
+// C-R-U-D
+// CREATE
+
+// JSON.stringify
+// JSON.PARSE
+function renderlist() {
+  const lista = document.getElementById('lista');
+  lista.innerHTML = '';
+
+  const persons = JSON.parse(localStorage.getItem('persons')) || [];
+
+  if (persons === null) {
+    return;
+  }
+
+  persons.forEach((person, index) => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+            <td>${index + 1} </td>
+            <td>${person.id}</td>
+            <td>${person.name}</td>
+            <td>${person.edad}</td>
+            <td>
+                <button>Modificar</button>
+                <button>Eliminar</button>
+            </td>
+        `;
+
+    lista.appendChild(row);
+  });
+
+  console.log(persons);
 }
 
-//READ-RETRIEVE
-//UPDATE
-//DELETE
+renderlist();
+
+function createPerson(e) { // Paréntesis agregado aquí
+  e.preventDefault();
+  console.log('VAMOS A CREAR UNA PERSONA...');
+  const name = document.getElementById('nombre').value.trim();
+  const age = document.getElementById('edad').value.trim();
+  const id = "2"
+  const form = document.getElementById('form');
+
+
+const persons = JSON.parse(localStorage.getItem('persons')) || [];
+
+
+persons.push({id, name, age})
+
+localStorage.setItem
+
+}
